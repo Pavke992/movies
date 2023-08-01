@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-    @include('components.head')
+@include('components.head')
+
 <body>
-    
+
     <div class="container">
-        
+
 
         @include('components.navigation')
 
@@ -18,4 +19,5 @@
 
 
 </body>
+
 </html>

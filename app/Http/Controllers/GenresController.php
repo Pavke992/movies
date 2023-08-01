@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Comments as ControllersComments;
-use App\Models\comment;
+use App\Models\Movie;
 use Illuminate\Http\Request;
 
-class Comments extends Controller
+class GenresController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,26 +20,16 @@ class Comments extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'movie_id' => 'required|string',
-            'content' => 'required|string'
-    
-          ]);
-    
-        $comment = comment::create([
-            'movie_id' => $request->title,
-            'content' => $request->content
-        ]);
-
-        // return redirect()
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($genre)
     {
-        //
+        $movies = Movie::where('genre', $genre)->get();
+        return view('pages.movies', compact('movies'));
     }
 
     /**

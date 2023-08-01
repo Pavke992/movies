@@ -13,11 +13,11 @@ class MoviesController extends Controller
     public function index()
     {
         $movies = Movie::all();
-        return view('pages.movies', compact('movies'));
+        return view('pages.movie', compact('movies'));
     }
 
-
-    public function create(){
+    public function create()
+    {
         return view('pages.create', compact('movies'));
     }
     /**
@@ -25,32 +25,23 @@ class MoviesController extends Controller
      */
     public function store(Request $request)
     {
-      $request->validate([
-        'title' => 'required|string',
-        'genre' => 'required|string',
-        'director' => 'required|string',
-        'year' => 'required|integer',
-        'storyline' => 'required|longText'
+        $request->validate([
+            'title' => 'required|string',
+            'genre' => 'required|string',
+            'director' => 'required|string',
+            'year' => 'required|integer',
+            'storyline' => 'required|longText',
+        ]);
 
-      ]);
-
-    $movie = Movie::create([
-        'title' => $request->title,
-        'genre' => $request->genre,
-        'director' => $request->director,
-        'year' => $request->year,
-        'storyline' => $request->storyline
-    ]);
+        Movie::create($request->all());
     }
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        $movies = Movie::find($id);
-        return view('pages.movies' ,compact('movies'));
-
-        
+        $movie = Movie::find($id);
+        return view('pages.singlemovie', compact('movie'));
     }
 
     /**
@@ -69,3 +60,5 @@ class MoviesController extends Controller
         //
     }
 }
+
+?>

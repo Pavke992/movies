@@ -5,14 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class comment extends Model
+class Comment extends Model
 {
-    protected $fillable = [
-        'movie_id',
-        'content'
-    ];
+    protected $fillable = ['movie_id', 'content'];
 
-    public function movie(){
+    public function movie()
+    {
         return $this->belongsTo(Movie::class);
     }
 
